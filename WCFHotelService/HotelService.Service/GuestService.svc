@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Service="HotelService.Contracts.Implementation.GuestService" Language="C#" %>

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HotelService.Data
 {
-    class GuestRepository : Repository<Guest>, IGuestRepository
+    public class GuestRepository : Repository<Guest>, IGuestRepository
     {
         public void ChangeGuestStatusType(Guest guest, GuestType type)
         {

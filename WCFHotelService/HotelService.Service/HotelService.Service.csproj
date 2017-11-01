@@ -81,6 +81,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="GuestService.svc" />
     <Content Include="HotelService.svc" />
     <Content Include="RoomReservationService.svc" />
     <Content Include="RoomService.svc" />

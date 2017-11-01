@@ -5,12 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using HotelService.Domain;
 using HotelService.Data.Abstractions;
+using HotelService.Data;
 
 namespace HotelService.Contracts.Implementation
 {
     public class GuestService : IGuestService
     {
         private readonly IGuestRepository _repository;
+
+        public GuestService()
+        {
+            _repository = new GuestRepository();
+        }
 
         public GuestService(IGuestRepository repository)
         {

@@ -8,7 +8,7 @@ namespace HotelService.Contracts
     public interface IGuestService:ICRUDService<Guest, int>
     {
         [OperationContract]
-        [WebInvoke(Method = "POST", UriTemplate = "/guest/changestatus/{type}")]
+        [WebInvoke(Method = "POST", UriTemplate = "/guest/changestatus?type={type}")]
         void ChangeGuestStatusType(Guest guest, GuestType type);
     }
 }
