@@ -32,7 +32,7 @@ namespace HotelService.Contracts.Implementation
             _repository.Create(reservation);
         }
 
-        public void Update(RoomReservation reservation)
+        public void Update(int id, RoomReservation reservation)
         {
             _repository.Update(reservation);
         }

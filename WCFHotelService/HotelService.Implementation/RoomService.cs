@@ -24,7 +24,9 @@ namespace HotelService.Contracts.Implementation
 
         public Room Get(int id)
         {
-            return _repository.Get(id);
+            //return _repository.Get(id);
+            var room = _repository.Get(id);
+            return room;
         }
 
         public IEnumerable<Room> GetAll()
@@ -37,7 +39,7 @@ namespace HotelService.Contracts.Implementation
             _repository.Create(room);
         }
 
-        public void Update(Room room)
+        public void Update(int id, Room room)
         {
             _repository.Update(room);
         }

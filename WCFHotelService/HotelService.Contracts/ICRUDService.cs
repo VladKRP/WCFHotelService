@@ -13,7 +13,7 @@ namespace HotelService.Contracts
         [OperationContract]
         void Create(Entity entity);
         [OperationContract]
-        void Update(Entity entity);
+        void Update(key id, Entity entity);
         [OperationContract]
         void Delete(Entity entity);
     }
