@@ -1,1 +1,1 @@
-﻿<%@ ServiceHost Service="HotelService.Contracts.Implementation.GuestService, GuestService" Language="C#" Factory="Autofac.Integration.Wcf.AutofacServiceHostFactory, Autofac.Integration.Wcf" %>
+﻿<%@ ServiceHost Service="HotelService.Contracts.Implementation.GuestService, GuestService" Language="C#"%>
