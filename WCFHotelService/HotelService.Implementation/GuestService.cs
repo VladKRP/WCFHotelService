@@ -42,7 +42,7 @@ namespace HotelService.Contracts.Implementation
             throw new NotImplementedException();
         }
 
-        public void ChangeGuestStatusType(GuestType status)
+        public void ChangeGuestStatusType(Guest guest, GuestType status)
         {
             throw new NotImplementedException();
         }
