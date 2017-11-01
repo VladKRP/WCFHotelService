@@ -25,7 +25,7 @@ namespace WCFHotelService.Tests
         [TestMethod]
         public void GetHotelRooms_Test()
         {
-            var rooms = client.GetHotelRooms(1);
+            var rooms = client.GetHotelRooms("1");
         }
 
         [TestMethod]
