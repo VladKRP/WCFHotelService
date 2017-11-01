@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ServiceModel;
+using System.ServiceModel.Web;
 
 namespace HotelService.Contracts
 {
@@ -7,14 +8,23 @@ namespace HotelService.Contracts
     public interface ICRUDService<Entity,key>
     {
         [OperationContract]
+        [WebGet]
         Entity Get(key id);
+
         [OperationContract]
+        [WebGet]
         IEnumerable<Entity> GetAll();
+
         [OperationContract]
+        [WebInvoke(Method = "POST")]
         void Create(Entity entity);
+
         [OperationContract]
-        void Update(key id, Entity entity);
+        [WebInvoke(Method = "PUT")]
+        void Update(Entity entity);
+
         [OperationContract]
+        [WebInvoke(Method = "DELETE")]
         void Delete(Entity entity);
     }
 }
