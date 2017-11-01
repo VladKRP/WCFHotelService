@@ -25,7 +25,7 @@ namespace HotelService.Contracts.Implementation
 
         public Guest Get(int id)
         {
-            throw new NotImplementedException();
+            return _repository.Get(id);
         }
 
         public IEnumerable<Guest> GetAll()
@@ -35,22 +35,22 @@ namespace HotelService.Contracts.Implementation
 
         public void Create(Guest guest)
         {
-            throw new NotImplementedException();
+            _repository.Create(guest);
         }
 
         public void Delete(Guest guest)
         {
-            throw new NotImplementedException();
+            _repository.Delete(guest);
         }
 
         public void Update(Guest guest)
         {
-            throw new NotImplementedException();
+            _repository.Update(guest);
         }
 
         public void ChangeGuestStatusType(Guest guest, GuestType status)
         {
-            throw new NotImplementedException();
+            _repository.ChangeGuestStatusType(guest, status);
         }
 
         protected virtual void Dispose()
