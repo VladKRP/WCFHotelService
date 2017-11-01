@@ -15,7 +15,7 @@ namespace HotelService.Domain
         public RoomType RoomType { get; set; }
         [DataMember]
         public decimal Cost { get; set; }
-        [DataMember]
+      
         public bool IsReserved { get; set; }
 
         public int? HotelId { get; set; }

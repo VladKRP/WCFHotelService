@@ -37,7 +37,7 @@ namespace HotelService.Contracts.Implementation
             throw new NotImplementedException();
         }
 
-        public void Update(int id, Guest guest)
+        public void Update(Guest guest)
         {
             throw new NotImplementedException();
         }

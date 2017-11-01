@@ -33,7 +33,7 @@ namespace HotelService.Contracts.Implementation
             _repository.Create(hotel);
         }
 
-        public void Update(int id, Hotel hotel)
+        public void Update(Hotel hotel)
         {
             _repository.Update(hotel);
         }
@@ -53,9 +53,10 @@ namespace HotelService.Contracts.Implementation
             return _repository.GetRoomsByType(type);
         }
 
-        public IEnumerable<Room> GetHotelRooms(int id)
+        public IEnumerable<Room> GetHotelRooms(string id)
         {
-            var hotelRooms = _repository.GetHotelWithRooms(id);
+            int parsedId = int.Parse(id);
+            var hotelRooms = _repository.GetHotelWithRooms(parsedId);
             return hotelRooms.Rooms;
         }
 

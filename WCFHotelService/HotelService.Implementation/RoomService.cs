@@ -39,7 +39,7 @@ namespace HotelService.Contracts.Implementation
             _repository.Create(room);
         }
 
-        public void Update(int id, Room room)
+        public void Update(Room room)
         {
             _repository.Update(room);
         }
