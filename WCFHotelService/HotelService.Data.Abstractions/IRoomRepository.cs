@@ -10,6 +10,6 @@ namespace HotelService.Data.Abstractions
     public interface IRoomRepository:IRepository<Room,int>, IDisposable
     {
        
-        
+
     }
 }

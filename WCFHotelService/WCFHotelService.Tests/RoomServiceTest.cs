@@ -38,13 +38,9 @@ namespace WCFHotelService.Tests
         }
 
         [TestMethod]
-        public void ExtendRoom_TestOutput()
+        public void GetRoom()
         {
-            //RoomReservation roomReservation = new RoomReservation();
-            //int additionalDays = 3;
-            //mock.Setup(x => x.Extend(roomReservation, additionalDays));
-
-            //Assert.AreEqual(roomClient.Reject(), "You reject reservation");
+            var room = roomClient.Get(2);
         }
 
         [TestMethod]

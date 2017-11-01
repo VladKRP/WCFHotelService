@@ -10,14 +10,14 @@ namespace HotelService.Data
 {
     public class RoomReservationRepository:Repository<RoomReservation>, IRoomReservationRepository, IDisposable
     {
-        private readonly HotelAppContext _context;
+        //private readonly HotelAppContext _context;
 
-        public RoomReservationRepository()
-        {
-            _context = new HotelAppContext();
-        }
+        //public RoomReservationRepository()
+        //{
+        //    _context = new HotelAppContext();
+        //}
 
-        public RoomReservationRepository(HotelAppContext context) { _context = context; }
+        //public RoomReservationRepository(HotelAppContext context) { _context = context; }
 
         public void ChangeRoomState(Room room, bool isReserved)
         {
