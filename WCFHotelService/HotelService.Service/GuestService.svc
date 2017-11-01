@@ -1,1 +1,1 @@
-﻿<%@ ServiceHost Service="HotelService.Contracts.Implementation.GuestService, GuestService" Language="C#"%>
+﻿<%@ ServiceHost Service="HotelService.Contracts.Implementation.GuestService" Language="C#"%>
