@@ -12,7 +12,7 @@ namespace HotelService.Contracts.Implementation
     {
         private readonly IRoomReservationRepository _repository;
 
-        public RoomReservationService() { }
+        public RoomReservationService() { _repository = new RoomReservationRepository(); }
 
         public RoomReservationService(IRoomReservationRepository repository) { _repository = repository; }
 

@@ -30,7 +30,7 @@ namespace HotelService.Contracts.Implementation
 
         public IEnumerable<Guest> GetAll()
         {
-            throw new NotImplementedException();
+            return _repository.GetAll();
         }
 
         public void Create(Guest guest)
