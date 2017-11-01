@@ -18,9 +18,10 @@ namespace HotelService.Contracts.Implementation
 
         public HotelService(IHotelRepository repository) { _repository = repository; }
 
-        public Hotel Get(int id)
+        public Hotel Get(string id)
         {
-            return _repository.Get(id);
+            int idValue = int.Parse(id);
+            return _repository.Get(idValue);
         }
 
         public IEnumerable<Hotel> GetAll()
@@ -38,8 +39,9 @@ namespace HotelService.Contracts.Implementation
             _repository.Update(hotel);
         }
 
-        public void Delete(Hotel hotel)
+        public void Delete(string id)
         {
+            var hotel = Get(id);
             _repository.Delete(hotel);
         }
 

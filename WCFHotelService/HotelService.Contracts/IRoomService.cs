@@ -4,7 +4,7 @@ using System.ServiceModel;
 namespace HotelService.Contracts
 {
     [ServiceContract]
-    public interface IRoomService:ICRUDService<Room, int>
+    public interface IRoomService:ICRUDService<Room>
     {
 
     }

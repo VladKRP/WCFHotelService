@@ -5,7 +5,7 @@ using System.ServiceModel.Web;
 namespace HotelService.Contracts
 {
     [ServiceContract]
-    public interface IGuestService:ICRUDService<Guest, int>
+    public interface IGuestService:ICRUDService<Guest>
     {
         [OperationContract]
         [WebInvoke(Method = "POST", UriTemplate = "/guest/changestatus?type={type}")]

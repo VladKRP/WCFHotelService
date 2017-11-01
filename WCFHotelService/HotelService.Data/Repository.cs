@@ -30,27 +30,20 @@ namespace HotelService.Data
 
         public virtual void Create(Entity entity)
         {
-            var existingEntity = dbSet.Find(entity);
-            if(existingEntity == null)
-                 dbSet.Add(entity);
+             dbSet.Add(entity);
             _context.SaveChanges();
         }
 
         public virtual void Update(Entity entity)
         {
-            var existingEntity = dbSet.Find(entity);
-            if (existingEntity != null)
-            {
-                _context.Entry<Entity>(entity).State = EntityState.Modified;
-                _context.SaveChanges();
-            }
+              _context.Entry<Entity>(entity).State = EntityState.Modified;
+              _context.SaveChanges();
         }
 
         public virtual void Delete(Entity entity)
         {
-            var existingEntity = dbSet.Find(entity);
-            if (existingEntity != null)
-                dbSet.Remove(entity);
+            _context.Entry(entity).State = EntityState.Deleted;
+            _context.SaveChanges();
         }
 
         private bool disposed = false;

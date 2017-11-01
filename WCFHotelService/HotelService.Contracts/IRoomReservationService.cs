@@ -5,7 +5,7 @@ using System.ServiceModel.Web;
 namespace HotelService.Contracts
 {
     [ServiceContract]
-    public interface IRoomReservationService:ICRUDService<RoomReservation, int>
+    public interface IRoomReservationService:ICRUDService<RoomReservation>
     {
         [OperationContract]
         [WebInvoke(Method = "PUT", UriTemplate = "/room/reservation?isReserved={isReserved}")]

@@ -17,9 +17,10 @@ namespace HotelService.Contracts.Implementation
         public RoomReservationService(IRoomReservationRepository repository) { _repository = repository; }
 
 
-        public RoomReservation Get(int id)
+        public RoomReservation Get(string id)
         {
-            return _repository.Get(id);
+            int idValue = int.Parse(id);
+            return _repository.Get(idValue);
         }
 
         public IEnumerable<RoomReservation> GetAll()
@@ -37,8 +38,9 @@ namespace HotelService.Contracts.Implementation
             _repository.Update(reservation);
         }
 
-        public void Delete(RoomReservation reservation)
+        public void Delete(string id)
         {
+            var reservation = Get(id);
             _repository.Delete(reservation);
         }
 

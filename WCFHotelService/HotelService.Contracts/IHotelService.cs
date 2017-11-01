@@ -7,7 +7,7 @@ using System.ServiceModel.Web;
 namespace HotelService.Contracts
 {
     [ServiceContract]
-    public interface IHotelService: ICRUDService<Hotel, int>
+    public interface IHotelService: ICRUDService<Hotel>
     {
         [OperationContract]
         [WebGet(UriTemplate ="/hotel/{id}/rooms")]

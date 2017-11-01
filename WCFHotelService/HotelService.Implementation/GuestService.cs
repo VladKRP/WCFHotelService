@@ -23,9 +23,10 @@ namespace HotelService.Contracts.Implementation
             _repository = repository;
         }
 
-        public Guest Get(int id)
+        public Guest Get(string id)
         {
-            return _repository.Get(id);
+            int idValue = int.Parse(id);
+            return _repository.Get(idValue);
         }
 
         public IEnumerable<Guest> GetAll()
@@ -38,14 +39,22 @@ namespace HotelService.Contracts.Implementation
             _repository.Create(guest);
         }
 
-        public void Delete(Guest guest)
+        public void Delete(string id)
         {
-            _repository.Delete(guest);
+            var guest = Get(id);
+            if(guest != null)
+            {
+                _repository.Delete(guest);
+            }     
         }
 
         public void Update(Guest guest)
         {
-            _repository.Update(guest);
+            var existingGuest = _repository.Get(guest.GuestId);
+            existingGuest.Name = guest.Name;
+            existingGuest.Surname = guest.Surname;
+            existingGuest.PassportNumber = guest.PassportNumber;
+            _repository.Update(existingGuest);
         }
 
         public void ChangeGuestStatusType(Guest guest, GuestType status)

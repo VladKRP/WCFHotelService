@@ -22,10 +22,10 @@ namespace HotelService.Contracts.Implementation
             _repository = repository;
         }
 
-        public Room Get(int id)
+        public Room Get(string id)
         {
-            var room = _repository.Get(id);
-            return room;
+            int idValue = int.Parse(id);
+            return _repository.Get(idValue);
         }
 
         public IEnumerable<Room> GetAll()
@@ -43,9 +43,11 @@ namespace HotelService.Contracts.Implementation
             _repository.Update(room);
         }
 
-        public void Delete(Room room)
+        public void Delete(string id)
         {
-            _repository.Delete(room);
+            var room = Get(id);
+            if(room != null)
+                _repository.Delete(room);
         }
 
         protected virtual void Dispose()

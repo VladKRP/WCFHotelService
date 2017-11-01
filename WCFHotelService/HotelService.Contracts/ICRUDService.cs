@@ -5,26 +5,26 @@ using System.ServiceModel.Web;
 namespace HotelService.Contracts
 {
     [ServiceContract]
-    public interface ICRUDService<Entity,key>
+    public interface ICRUDService<Entity>
     {
         [OperationContract]
-        [WebGet]
-        Entity Get(key id);
+        [WebGet(UriTemplate = "/{id}")]
+        Entity Get(string id);
 
         [OperationContract]
-        [WebGet]
+        [WebGet(UriTemplate = "/")]
         IEnumerable<Entity> GetAll();
 
         [OperationContract]
-        [WebInvoke(Method = "POST")]
+        [WebInvoke(Method = "POST", UriTemplate = "/")]
         void Create(Entity entity);
 
         [OperationContract]
-        [WebInvoke(Method = "PUT")]
+        [WebInvoke(Method = "PUT", UriTemplate = "/")]
         void Update(Entity entity);
 
         [OperationContract]
-        [WebInvoke(Method = "DELETE")]
-        void Delete(Entity entity);
+        [WebInvoke(Method = "DELETE", UriTemplate = "/{id}")]
+        void Delete(string id);
     }
 }
