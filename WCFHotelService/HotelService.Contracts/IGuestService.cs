@@ -8,6 +8,6 @@ namespace HotelService.Contracts
     public interface IGuestService:ICRUDService<Guest, int>
     {
         [OperationContract]
-        void ChangeGuestStatusType(GuestType type);
+        void ChangeGuestStatusType(Guest guest, GuestType type);
     }
 }

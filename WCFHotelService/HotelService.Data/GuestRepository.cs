@@ -8,8 +8,18 @@ using System.Threading.Tasks;
 
 namespace HotelService.Data
 {
-    class GuestRepository: Repository<Guest>, IGuestRepository
+    class GuestRepository : Repository<Guest>, IGuestRepository
     {
+        public void ChangeGuestStatusType(Guest guest, GuestType type)
+        {
+            var existingGuest = _context.Guests.Find(guest);
+            if(existingGuest != null)
+            {
+                existingGuest.Type = type;
+                _context.Entry(existingGuest).State = System.Data.Entity.EntityState.Modified;
+                _context.SaveChanges();
+            }
 
+        }
     }
 }
