@@ -5,16 +5,21 @@ using System.Collections;
 using HotelService.Domain;
 using HotelService.Data.Abstractions;
 using HotelService.Data;
+using HotelService.Domain.DTO;
+using AutoMapper;
+using HotelService.Contracts.Implementation.MapperProfile;
 
 namespace HotelService.Contracts.Implementation
 {
     public class HotelService : IHotelService
     {
         private readonly UnitOfWork _repository;
+        private readonly IMapper _mapper;
 
         public HotelService()
         {
             _repository = new UnitOfWork();
+            _mapper = HotelServiceMapper.Configure();
         }
 
         //public HotelService(IHotelRepository repository) { _repository = repository; }
@@ -47,8 +52,7 @@ namespace HotelService.Contracts.Implementation
                 existingHotel.Address = hotel.Address;
                 existingHotel.Rooms = existingHotel.Rooms;
                 _repository.Hotels.Update(hotel);
-            }
-                
+            }      
         }
 
         public void Delete(string id)
@@ -58,45 +62,52 @@ namespace HotelService.Contracts.Implementation
                 _repository.Hotels.Delete(hotel);
         }
 
-        public IEnumerable<Room> GetHotelRooms(string id)
+        public IEnumerable<RoomDTO> GetHotelRooms(string id)
         {
-            IEnumerable<Room> rooms = null;
+            IEnumerable<RoomDTO> rooms = null;
             if (int.TryParse(id, out int value))
             {
                 var hotel = _repository.Hotels.GetHotelWithRooms(value);
-                foreach (var room in hotel.Rooms)
-                    room.Hotel = null;
-                rooms = hotel.Rooms;
+                rooms = _mapper.Map<IEnumerable<RoomDTO>>(hotel.Rooms);
             }
             return rooms;
         }
 
-        public IQueryable<Room> GetReservedRooms(string id)
+        public IQueryable<RoomDTO> GetReservedRooms(string id)
         {
-            IQueryable<Room> vacantRooms = null;
+            IEnumerable<RoomDTO> reservedRooms = null;
             if (int.TryParse(id, out int value))
-                vacantRooms = _repository.Hotels.GetReservedRooms(value);
-            return vacantRooms;
+                reservedRooms = _mapper.Map<IEnumerable<RoomDTO>>(_repository.Hotels.GetReservedRooms(value));
+            return reservedRooms.AsQueryable();
         }
 
-        public IQueryable<Room> GetVacantRooms(string id)
+        public IQueryable<RoomDTO> GetVacantRooms(string id)
         {
-            IQueryable<Room> vacantRooms = null;
+            IEnumerable<RoomDTO> vacantRooms = null;
             if(int.TryParse(id, out int value))
-                vacantRooms = _repository.Hotels.GetVacantRooms(value);
-            return vacantRooms;
+                vacantRooms = _mapper.Map<IEnumerable<RoomDTO>>(_repository.Hotels.GetVacantRooms(value));
+            return vacantRooms.AsQueryable();
         }
 
-        public IQueryable<Room> GetRoomsByType(string id, string type)
+        public IQueryable<RoomDTO> GetRoomsByType(string id, string type)
         {
-            //return _repository.GetRoomsByType(type);
-            return null;
+            IEnumerable<RoomDTO> roomsDto = null;
+            if(int.TryParse(id, out int value))
+            {
+                if (!string.IsNullOrEmpty(type))
+                {
+                    type = type.Where(x => char.IsLetter(x)).Aggregate("", (x, y) => x += y);
+                    var roomType = _repository.RoomTypes.GetByName(type);
+                    var rooms = _repository.Hotels.GetRoomsByType(value, roomType);
+                    roomsDto = _mapper.Map<IEnumerable<RoomDTO>>(rooms);
+                } 
+            }
+            return roomsDto.AsQueryable();
         }
 
-        public IQueryable<Room> GetVacantRoomsOfSpecialType(string id, string type)
+        public IQueryable<RoomDTO> GetVacantRoomsOfSpecialType(string id, string type)
         {
-            //return _repository.GetVacantRoomsOfSpecialType(type);
-            return null;
+            return GetRoomsByType(id, type).Where(x => !x.IsReserved);
         }
 
         protected  virtual void Dispose()

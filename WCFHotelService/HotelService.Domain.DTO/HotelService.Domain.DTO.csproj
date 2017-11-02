@@ -30,11 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\HotelService.Service\Bin\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="HotelService.Domain">
-      <HintPath>..\HotelService.Contracts\bin\Debug\HotelService.Domain.dll</HintPath>
+    <Reference Include="HotelService.Domain, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\HotelService.Implementation\bin\Debug\HotelService.Domain.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

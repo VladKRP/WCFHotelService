@@ -8,7 +8,7 @@ namespace HotelService.Domain
 {
     public class Discount
     {
-        public int DiscountId { get; set; }
+        public int Id { get; set; }
 
         public GuestType GuestType { get; set; }
 

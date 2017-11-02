@@ -1,4 +1,5 @@
 ﻿using HotelService.Domain;
+using HotelService.Domain.DTO;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
@@ -11,23 +12,23 @@ namespace HotelService.Contracts
     {
         [OperationContract]
         [WebGet(UriTemplate ="/hotel/{id}/rooms")]
-        IEnumerable<Room> GetHotelRooms(string id);
+        IEnumerable<RoomDTO> GetHotelRooms(string id);
 
         [OperationContract]
         [WebGet(UriTemplate = "/hotel/{id}/rooms/vacant")]
-        IQueryable<Room> GetVacantRooms(string id);
+        IQueryable<RoomDTO> GetVacantRooms(string id);
 
         [OperationContract]
         [WebGet(UriTemplate = "hotel/{id}/rooms/reserved")]
-        IQueryable<Room> GetReservedRooms(string id);
+        IQueryable<RoomDTO> GetReservedRooms(string id);
 
         [OperationContract]
         [WebGet(UriTemplate = "hotel/{id}/rooms?type={type}")]
-        IQueryable<Room> GetRoomsByType(string id, string type);
+        IQueryable<RoomDTO> GetRoomsByType(string id, string type);
 
         [OperationContract]
         [WebGet(UriTemplate = "hotel/{id}/rooms/vacant?type={type}")]
-        IQueryable<Room> GetVacantRoomsOfSpecialType(string id, string type);
+        IQueryable<RoomDTO> GetVacantRoomsOfSpecialType(string id, string type);
 
     }
 }

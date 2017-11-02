@@ -9,12 +9,10 @@ namespace HotelService.Data.Abstractions
     {
         Hotel GetHotelWithRooms(int id);
 
-        IQueryable<Room> GetVacantRooms(int id);
+        IEnumerable<Room> GetVacantRooms(int id);
 
-        IQueryable<Room> GetReservedRooms(int id);
+        IEnumerable<Room> GetReservedRooms(int id);
 
-        IQueryable<Room> GetRoomsByType(int id, RoomType type);
-
-        IQueryable<Room> GetVacantRoomsOfSpecialType(int id, RoomType type);
+        IEnumerable<Room> GetRoomsByType(int id, RoomType type);
     }
 }

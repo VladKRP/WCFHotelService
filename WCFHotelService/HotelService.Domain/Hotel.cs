@@ -13,7 +13,7 @@ namespace HotelService.Domain
     {
         [Key]
         [DataMember]
-        public int HotelId { get; set; }
+        public int Id { get; set; }
         [DataMember]
         public Address Address { get; set; }
         [DataMember]

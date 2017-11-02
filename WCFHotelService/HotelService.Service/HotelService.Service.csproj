@@ -44,26 +44,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=3.3.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.3.3.1\lib\net40\Autofac.dll</HintPath>
-    </Reference>
-    <Reference Include="Autofac.Integration.Wcf, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.Wcf.4.0.0\lib\net45\Autofac.Integration.Wcf.dll</HintPath>
+    <Reference Include="HotelService.Contracts">
+      <HintPath>..\HotelService.Contracts\bin\Debug\HotelService.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="HotelService.Contracts.Implementation">
       <HintPath>..\HotelService.Implementation\bin\Debug\HotelService.Contracts.Implementation.dll</HintPath>
-    </Reference>
-    <Reference Include="HotelService.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\HotelService.Implementation\bin\Debug\HotelService.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="HotelService.Data.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\HotelService.Implementation\bin\Debug\HotelService.Data.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="HotelService.Domain, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\HotelService.Implementation\bin\Debug\HotelService.Domain.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
@@ -91,7 +76,6 @@
     <Content Include="HotelService.svc" />
     <Content Include="RoomReservationService.svc" />
     <Content Include="RoomService.svc" />
-    <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -105,15 +89,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bootstraper.cs" />
-    <Compile Include="Global.asax.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\HotelService.Contracts\HotelService.Contracts.csproj">
-      <Project>{2F01DF93-5369-40F6-8FDE-12D8E765778B}</Project>
-      <Name>HotelService.Contracts</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

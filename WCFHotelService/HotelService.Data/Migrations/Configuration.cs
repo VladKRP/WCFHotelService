@@ -26,18 +26,18 @@ namespace HotelService.Data.Migrations
                 new RoomType(){ Name = "Studia", Cost = 70M},
                 new RoomType(){ Name = "King", Cost = 200M},
             };
-            foreach (var roomType in roomTypes)
-                context.RoomTypes.Add(roomType);
+            foreach (var Type in roomTypes)
+                context.RoomTypes.Add(Type);
             context.SaveChanges();
 
 
             List<Room> rooms = new List<Room>()
             {
-                new Room(){ Number = "1", RoomType = roomTypes.ElementAt(0),  IsReserved = true},
-                new Room(){ Number = "2", RoomType = roomTypes.ElementAt(0),  IsReserved = false},
-                new Room(){ Number = "3", RoomType = roomTypes.ElementAt(3),  IsReserved = true},
-                new Room(){ Number = "4", RoomType = roomTypes.ElementAt(1),  IsReserved = false},
-                new Room(){ Number = "5", RoomType = roomTypes.ElementAt(2),  IsReserved = false}
+                new Room(){ Number = "1", Type = roomTypes.ElementAt(0),  IsReserved = true},
+                new Room(){ Number = "2", Type = roomTypes.ElementAt(0),  IsReserved = false},
+                new Room(){ Number = "3", Type = roomTypes.ElementAt(3),  IsReserved = true},
+                new Room(){ Number = "4", Type = roomTypes.ElementAt(1),  IsReserved = false},
+                new Room(){ Number = "5", Type = roomTypes.ElementAt(2),  IsReserved = false}
             };
 
             foreach(var room in rooms)

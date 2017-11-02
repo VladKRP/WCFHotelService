@@ -53,6 +53,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\HotelService.Domain.DTO\HotelService.Domain.DTO.csproj">
+      <Project>{04D09E08-A601-44AE-9525-3AE8DA0EDAC3}</Project>
+      <Name>HotelService.Domain.DTO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HotelService.Domain\HotelService.Domain.csproj">
       <Project>{ADA15A77-4072-41DD-B2E3-AD49BE981E90}</Project>
       <Name>HotelService.Domain</Name>
