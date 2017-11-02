@@ -36,7 +36,6 @@ namespace HotelService.Data
             currentReservation.Days += days;
             currentReservation.EndDate = currentReservation.EndDate.Add(new TimeSpan(days, 0, 0, 0, 0));
             _context.SaveChanges();
-            //throw new NotImplementedException();
         }
 
         public void Reject(RoomReservation reservation)
@@ -49,7 +48,6 @@ namespace HotelService.Data
                 _context.RoomReservations.Remove(currentReservation);
             }
             _context.SaveChanges();
-            //throw new NotImplementedException();
         }
 
         public void Reserve(RoomReservation reservation)
@@ -63,7 +61,6 @@ namespace HotelService.Data
                 _context.RoomReservations.Add(reservation);
             }
             _context.SaveChanges();
-            //throw new NotImplementedException();
         }
 
         protected override void Dispose(bool disposing)
