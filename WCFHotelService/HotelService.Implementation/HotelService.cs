@@ -10,33 +10,33 @@ namespace HotelService.Contracts.Implementation
 {
     public class HotelService : IHotelService
     {
-        private readonly IHotelRepository _repository;
+        private readonly UnitOfWork _repository;
 
         public HotelService()
         {
-            _repository = new HotelRepository();
+            _repository = new UnitOfWork();
         }
 
-        public HotelService(IHotelRepository repository) { _repository = repository; }
+        //public HotelService(IHotelRepository repository) { _repository = repository; }
 
         public Hotel Get(string id)
         {
             Hotel hotel = null;
             if(int.TryParse(id, out int value))
             {
-                hotel = _repository.Get(value);
+                hotel = _repository.Hotels.Get(value);
             }
             return hotel;
         }
 
         public IEnumerable<Hotel> GetAll()
         {
-            return _repository.GetAll();
+            return _repository.Hotels.GetAll();
         }
 
         public void Create(Hotel hotel)
         {
-            _repository.Create(hotel);
+            _repository.Hotels.Create(hotel);
         }
 
         public void Update(string id, Hotel hotel)
@@ -46,7 +46,7 @@ namespace HotelService.Contracts.Implementation
             {
                 existingHotel.Address = hotel.Address;
                 existingHotel.Rooms = existingHotel.Rooms;
-                _repository.Update(hotel);
+                _repository.Hotels.Update(hotel);
             }
                 
         }
@@ -55,7 +55,7 @@ namespace HotelService.Contracts.Implementation
         {
             var hotel = Get(id);
             if(hotel != null)
-                _repository.Delete(hotel);
+                _repository.Hotels.Delete(hotel);
         }
 
         public IEnumerable<Room> GetHotelRooms(string id)
@@ -63,7 +63,7 @@ namespace HotelService.Contracts.Implementation
             IEnumerable<Room> rooms = null;
             if (int.TryParse(id, out int value))
             {
-                var hotel = _repository.GetHotelWithRooms(value);
+                var hotel = _repository.Hotels.GetHotelWithRooms(value);
                 foreach (var room in hotel.Rooms)
                     room.Hotel = null;
                 rooms = hotel.Rooms;
@@ -75,7 +75,7 @@ namespace HotelService.Contracts.Implementation
         {
             IQueryable<Room> vacantRooms = null;
             if (int.TryParse(id, out int value))
-                vacantRooms = _repository.GetReservedRooms(value);
+                vacantRooms = _repository.Hotels.GetReservedRooms(value);
             return vacantRooms;
         }
 
@@ -83,7 +83,7 @@ namespace HotelService.Contracts.Implementation
         {
             IQueryable<Room> vacantRooms = null;
             if(int.TryParse(id, out int value))
-                vacantRooms = _repository.GetVacantRooms(value);
+                vacantRooms = _repository.Hotels.GetVacantRooms(value);
             return vacantRooms;
         }
 
