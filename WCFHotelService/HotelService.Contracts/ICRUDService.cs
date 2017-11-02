@@ -20,8 +20,8 @@ namespace HotelService.Contracts
         void Create(Entity entity);
 
         [OperationContract]
-        [WebInvoke(Method = "PUT", UriTemplate = "/")]
-        void Update(Entity entity);
+        [WebInvoke(Method = "PUT", UriTemplate = "/{id}")]
+        void Update(string id, Entity entity);
 
         [OperationContract]
         [WebInvoke(Method = "DELETE", UriTemplate = "/{id}")]

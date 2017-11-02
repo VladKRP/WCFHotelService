@@ -31,13 +31,13 @@ namespace WCFHotelService.Tests
         [TestMethod]
         public void GetVacantRooms_Test()
         {
-            var rooms = client.GetVacantRooms();
+            var rooms = client.GetVacantRooms("1");
         }
 
         [TestMethod]
         public void GetReservedRooms_Test()
         {
-           var rooms = client.GetReservedRooms();
+           var rooms = client.GetReservedRooms("1");
            Assert.IsNotNull(rooms);
         }
 

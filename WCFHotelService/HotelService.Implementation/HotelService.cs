@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Collections;
 using HotelService.Domain;
 using HotelService.Data.Abstractions;
 using HotelService.Data;
@@ -20,8 +21,12 @@ namespace HotelService.Contracts.Implementation
 
         public Hotel Get(string id)
         {
-            int idValue = int.Parse(id);
-            return _repository.Get(idValue);
+            Hotel hotel = null;
+            if(int.TryParse(id, out int value))
+            {
+                hotel = _repository.Get(value);
+            }
+            return hotel;
         }
 
         public IEnumerable<Hotel> GetAll()
@@ -34,48 +39,69 @@ namespace HotelService.Contracts.Implementation
             _repository.Create(hotel);
         }
 
-        public void Update(Hotel hotel)
+        public void Update(string id, Hotel hotel)
         {
-            _repository.Update(hotel);
+            var existingHotel = Get(id);
+            if(existingHotel != null)
+            {
+                existingHotel.Address = hotel.Address;
+                existingHotel.Rooms = existingHotel.Rooms;
+                _repository.Update(hotel);
+            }
+                
         }
 
         public void Delete(string id)
         {
             var hotel = Get(id);
-            _repository.Delete(hotel);
-        }
-
-        public IQueryable<Room> GetReservedRooms()
-        {
-            return _repository.GetReservedRooms();
-        }
-
-        public IQueryable<Room> GetRoomsByType(RoomType type)
-        {
-            return _repository.GetRoomsByType(type);
+            if(hotel != null)
+                _repository.Delete(hotel);
         }
 
         public IEnumerable<Room> GetHotelRooms(string id)
         {
-            int parsedId = int.Parse(id);
-            var hotelRooms = _repository.GetHotelWithRooms(parsedId);
-            return hotelRooms.Rooms;
+            IEnumerable<Room> rooms = null;
+            if (int.TryParse(id, out int value))
+            {
+                var hotel = _repository.GetHotelWithRooms(value);
+                foreach (var room in hotel.Rooms)
+                    room.Hotel = null;
+                rooms = hotel.Rooms;
+            }
+            return rooms;
         }
 
-        public IQueryable<Room> GetVacantRooms()
+        public IQueryable<Room> GetReservedRooms(string id)
         {
-            return _repository.GetVacantRooms();
+            IQueryable<Room> vacantRooms = null;
+            if (int.TryParse(id, out int value))
+                vacantRooms = _repository.GetReservedRooms(value);
+            return vacantRooms;
         }
 
-        public IQueryable<Room> GetVacantRoomsOfSpecialType(RoomType type)
+        public IQueryable<Room> GetVacantRooms(string id)
         {
-            return _repository.GetVacantRoomsOfSpecialType(type);
+            IQueryable<Room> vacantRooms = null;
+            if(int.TryParse(id, out int value))
+                vacantRooms = _repository.GetVacantRooms(value);
+            return vacantRooms;
+        }
+
+        public IQueryable<Room> GetRoomsByType(string id, string type)
+        {
+            //return _repository.GetRoomsByType(type);
+            return null;
+        }
+
+        public IQueryable<Room> GetVacantRoomsOfSpecialType(string id, string type)
+        {
+            //return _repository.GetVacantRoomsOfSpecialType(type);
+            return null;
         }
 
         protected  virtual void Dispose()
         {
             _repository.Dispose();
         }
-     
     }
 }

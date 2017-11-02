@@ -17,6 +17,6 @@ namespace HotelService.Domain
         [DataMember]
         public Address Address { get; set; }
         [DataMember]
-        public IEnumerable<Room> Rooms { get; set; }
+        public virtual ICollection<Room> Rooms { get; set; }
     }
 }

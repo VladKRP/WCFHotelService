@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using HotelService.Domain;
 using System.Data;
+using System.Data.Entity;
 
 namespace HotelService.Data
 {
@@ -19,29 +20,33 @@ namespace HotelService.Data
 
         public Hotel GetHotelWithRooms(int id)
         {
-            var hotels = _context.Hotels.Include("Rooms").ToList();
-            //return _context.Hotels.FirstOrDefault(x => x.HotelId.Equals(id));
-            throw new NotImplementedException();
+            var hotel = _context.Hotels.FirstOrDefault(x => x.HotelId.Equals(id));
+            return hotel;
         }
 
-        public IQueryable<Room> GetReservedRooms()
+        public IQueryable<Room> GetHotelRooms(int id)
         {
-            return _context.Rooms.Where(x => x.IsReserved.Equals(true));
+            return GetHotelWithRooms(id).Rooms.AsQueryable();
         }
 
-        public IQueryable<Room> GetRoomsByType(RoomType type)
+        public IQueryable<Room> GetReservedRooms(int id)
         {
-            return _context.Rooms.Where(x => x.RoomType.Equals(type));
+            return GetHotelRooms(id).Where(x => x.IsReserved.Equals(true));
         }
 
-        public IQueryable<Room> GetVacantRooms()
+        public IQueryable<Room> GetRoomsByType(int id, RoomType type)
         {
-            return _context.Rooms.Where(x => x.IsReserved.Equals(false));
+            return GetHotelRooms(id).Where(x => x.RoomType.Equals(type));
         }
 
-        public IQueryable<Room> GetVacantRoomsOfSpecialType(RoomType type)
+        public IQueryable<Room> GetVacantRooms(int id)
         {
-            return GetVacantRooms().Where(x => x.RoomType.Equals(type));
+            return GetHotelRooms(id).Where(x => x.IsReserved.Equals(false));
+        }
+
+        public IQueryable<Room> GetVacantRoomsOfSpecialType(int id, RoomType type)
+        {
+            return GetVacantRooms(id).Where(x => x.RoomType.Equals(type));
         }
     }
 }

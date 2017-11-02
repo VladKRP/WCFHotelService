@@ -6,6 +6,6 @@ namespace HotelService.Contracts
     [ServiceContract]
     public interface IRoomService:ICRUDService<Room>
     {
-
+        
     }
 }

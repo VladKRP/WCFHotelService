@@ -14,25 +14,6 @@ namespace HotelService.Contracts
         IEnumerable<Room> GetHotelRooms(string id);
 
         [OperationContract]
-        [WebGet(UriTemplate = "/hotel/rooms/vacant")]
-        IQueryable<Room> GetVacantRooms();
-
-        [OperationContract]
-        [WebGet(UriTemplate = "hotel/rooms/reserved")]
-        IQueryable<Room> GetReservedRooms();
-
-        [OperationContract]
-        [WebGet(UriTemplate = "hotel/rooms?type={type}")]
-        IQueryable<Room> GetRoomsByType(RoomType type);
-
-        [OperationContract]
-        [WebGet(UriTemplate = "hotel/rooms/vacant?type={type}")]
-        IQueryable<Room> GetVacantRoomsOfSpecialType(RoomType type);
-
-    }
-}
-/*
- [OperationContract]
         [WebGet(UriTemplate = "/hotel/{id}/rooms/vacant")]
         IQueryable<Room> GetVacantRooms(string id);
 
@@ -41,10 +22,12 @@ namespace HotelService.Contracts
         IQueryable<Room> GetReservedRooms(string id);
 
         [OperationContract]
-        [WebGet(UriTemplate = "hotel/rooms?type={type}")]
-        IQueryable<Room> GetRoomsByType(string id, RoomType type);
+        [WebGet(UriTemplate = "hotel/{id}/rooms?type={type}")]
+        IQueryable<Room> GetRoomsByType(string id, string type);
 
         [OperationContract]
         [WebGet(UriTemplate = "hotel/{id}/rooms/vacant?type={type}")]
-        IQueryable<Room> GetVacantRoomsOfSpecialType(string id, RoomType type);
-     */
+        IQueryable<Room> GetVacantRoomsOfSpecialType(string id, string type);
+
+    }
+}

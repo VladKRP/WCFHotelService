@@ -31,13 +31,13 @@ namespace HotelService.Data.Migrations
             context.SaveChanges();
 
 
-            IEnumerable<Room> rooms = new List<Room>()
+            List<Room> rooms = new List<Room>()
             {
-                new Room(){ Number = "1", RoomType = roomTypes.ElementAt(0), IsReserved = true},
-                new Room(){ Number = "2", RoomType = roomTypes.ElementAt(0), IsReserved = false},
-                new Room(){ Number = "3", RoomType = roomTypes.ElementAt(3), IsReserved = true},
-                new Room(){ Number = "4", RoomType = roomTypes.ElementAt(1), IsReserved = false},
-                new Room(){ Number = "5", RoomType = roomTypes.ElementAt(2), IsReserved = false}
+                new Room(){ Number = "1", RoomType = roomTypes.ElementAt(0),  IsReserved = true},
+                new Room(){ Number = "2", RoomType = roomTypes.ElementAt(0),  IsReserved = false},
+                new Room(){ Number = "3", RoomType = roomTypes.ElementAt(3),  IsReserved = true},
+                new Room(){ Number = "4", RoomType = roomTypes.ElementAt(1),  IsReserved = false},
+                new Room(){ Number = "5", RoomType = roomTypes.ElementAt(2),  IsReserved = false}
             };
 
             foreach(var room in rooms)

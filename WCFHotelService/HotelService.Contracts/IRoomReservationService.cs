@@ -8,8 +8,8 @@ namespace HotelService.Contracts
     public interface IRoomReservationService:ICRUDService<RoomReservation>
     {
         [OperationContract]
-        [WebInvoke(Method = "PUT", UriTemplate = "/room/reservation?isReserved={isReserved}")]
-        void ChangeRoomState(Room room, bool isReserved);
+        [WebInvoke(Method = "PUT", UriTemplate = "/room/{roomId}/reservation?isReserved={isReserved}")]
+        void ChangeRoomState(string roomId, bool isReserved);
 
         [OperationContract]
         [WebInvoke(Method = "POST", UriTemplate = "/room/reservation/reserve")]
@@ -19,11 +19,11 @@ namespace HotelService.Contracts
         [OperationContract]
         [WebInvoke(Method = "PUT", UriTemplate = "/room/reservation/reject")]
         [FaultContract(typeof(FaultException))]
-        void Reject(RoomReservation reservation);
+        void Reject(string reservationId);
 
         [OperationContract]
         [WebInvoke(Method = "PUT", UriTemplate = "/room/reservation/extend?days={days}")]
         [FaultContract(typeof(FaultException))]
-        void Extend(RoomReservation reservation, int days);
+        void Extend(string reservationId, int days);
     }
 }

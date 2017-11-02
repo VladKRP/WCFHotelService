@@ -12,14 +12,9 @@ namespace HotelService.Data
     {
         public void ChangeGuestStatusType(Guest guest, GuestType type)
         {
-            var existingGuest = _context.Guests.Find(guest);
-            if(existingGuest != null)
-            {
-                existingGuest.Type = type;
-                _context.Entry(existingGuest).State = System.Data.Entity.EntityState.Modified;
-                _context.SaveChanges();
-            }
-
+            guest.Type = type;
+            _context.Entry(guest).State = System.Data.Entity.EntityState.Modified;
+            _context.SaveChanges();
         }
     }
 }

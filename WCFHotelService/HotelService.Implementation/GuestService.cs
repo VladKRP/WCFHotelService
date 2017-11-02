@@ -11,32 +11,34 @@ namespace HotelService.Contracts.Implementation
 {
     public class GuestService : IGuestService
     {
-        private readonly IGuestRepository _repository;
+        private readonly UnitOfWork _repository;
 
         public GuestService()
         {
-            _repository = new GuestRepository();
+            _repository = new UnitOfWork();
         }
 
-        public GuestService(IGuestRepository repository)
-        {
-            _repository = repository;
-        }
+        //public GuestService(IGuestRepository repository)
+        //{
+        //    _repository = repository;
+        //}
 
         public Guest Get(string id)
         {
-            int idValue = int.Parse(id);
-            return _repository.Get(idValue);
+            Guest guest = null;
+            if (int.TryParse(id, out int value))
+                guest = _repository.Guests.Get(value);
+            return guest;
         }
 
         public IEnumerable<Guest> GetAll()
         {
-            return _repository.GetAll();
+            return _repository.Guests.GetAll();
         }
 
         public void Create(Guest guest)
         {
-            _repository.Create(guest);
+            _repository.Guests.Create(guest);
         }
 
         public void Delete(string id)
@@ -44,22 +46,24 @@ namespace HotelService.Contracts.Implementation
             var guest = Get(id);
             if(guest != null)
             {
-                _repository.Delete(guest);
+                _repository.Guests.Delete(guest);
             }     
         }
 
-        public void Update(Guest guest)
+        public void Update(string id, Guest guest)
         {
-            var existingGuest = _repository.Get(guest.GuestId);
+            var existingGuest = Get(id);
             existingGuest.Name = guest.Name;
             existingGuest.Surname = guest.Surname;
             existingGuest.PassportNumber = guest.PassportNumber;
-            _repository.Update(existingGuest);
+            _repository.Guests.Update(existingGuest);
         }
 
-        public void ChangeGuestStatusType(Guest guest, GuestType status)
+        public void ChangeGuestStatusType(string id, GuestType status)
         {
-            _repository.ChangeGuestStatusType(guest, status);
+            var guest = Get(id);
+            if(guest != null)
+                _repository.Guests.ChangeGuestStatusType(guest, status);
         }
 
         protected virtual void Dispose()
