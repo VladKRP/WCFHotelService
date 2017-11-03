@@ -15,6 +15,10 @@ namespace HotelService.Contracts
         IEnumerable<RoomDTO> GetHotelRooms(string id);
 
         [OperationContract]
+        [WebGet(UriTemplate = "/hotels?city={city}")]
+        IEnumerable<HotelDTO> GetHotelsByCity(string city);
+
+        [OperationContract]
         [WebGet(UriTemplate = "/hotel/{id}/rooms/vacant")]
         IQueryable<RoomDTO> GetVacantRooms(string id);
 
