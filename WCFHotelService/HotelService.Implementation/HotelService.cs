@@ -24,42 +24,47 @@ namespace HotelService.Contracts.Implementation
 
         //public HotelService(IHotelRepository repository) { _repository = repository; }
 
-        public Hotel Get(string id)
+        public HotelDTO Get(string id)
         {
-            Hotel hotel = null;
+            HotelDTO hotel = null;
             if(int.TryParse(id, out int value))
             {
-                hotel = _repository.Hotels.Get(value);
+                hotel = _mapper.Map<HotelDTO>(_repository.Hotels.Get(value));
             }
             return hotel;
         }
 
-        public IEnumerable<Hotel> GetAll()
+        public IEnumerable<HotelDTO> GetAll()
         {
-            return _repository.Hotels.GetAll();
+            var hotels = _repository.Hotels.GetAll();
+            return _mapper.Map<IEnumerable<HotelDTO>>(hotels);
         }
 
-        public void Create(Hotel hotel)
+        public void Create(HotelDTO hotelDto)
         {
+            var hotel = _mapper.Map<Hotel>(hotelDto);
             _repository.Hotels.Create(hotel);
         }
 
-        public void Update(string id, Hotel hotel)
+        public void Update(string id, HotelDTO hotel)
         {
-            var existingHotel = Get(id);
-            if(existingHotel != null)
-            {
-                existingHotel.Address = hotel.Address;
-                existingHotel.Rooms = existingHotel.Rooms;
-                _repository.Hotels.Update(hotel);
-            }      
+            //var existingHotel = Get(id);
+            //if(existingHotel != null)
+            //{
+            //    existingHotel.Address = hotel.Address;
+            //    existingHotel.Rooms = existingHotel.Rooms;
+            //    _repository.Hotels.Update(hotel);
+            //}      
         }
 
         public void Delete(string id)
         {
-            var hotel = Get(id);
-            if(hotel != null)
-                _repository.Hotels.Delete(hotel);
+            if(int.TryParse(id,out int value))
+            {
+                var hotel = _repository.Hotels.Get(value);
+                if (hotel != null)
+                    _repository.Hotels.Delete(hotel);
+            }          
         }
 
         public IEnumerable<RoomDTO> GetHotelRooms(string id)
@@ -85,7 +90,10 @@ namespace HotelService.Contracts.Implementation
         {
             IEnumerable<RoomDTO> vacantRooms = null;
             if(int.TryParse(id, out int value))
-                vacantRooms = _mapper.Map<IEnumerable<RoomDTO>>(_repository.Hotels.GetVacantRooms(value));
+            {
+                var rooms = _repository.Hotels.GetVacantRooms(value);
+                vacantRooms = _mapper.Map<IEnumerable<RoomDTO>>(rooms);
+            }             
             return vacantRooms.AsQueryable();
         }
 

@@ -14,7 +14,7 @@ namespace HotelService.Domain
         [DataMember]
         public string Number { get; set; }
         [DataMember]
-        public RoomType Type { get; set; }
+        public virtual RoomType Type { get; set; }
         [DataMember]
         public decimal Cost { get; set; }
         [DataMember]
