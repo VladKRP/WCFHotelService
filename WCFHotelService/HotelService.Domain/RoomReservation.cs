@@ -27,23 +27,38 @@ namespace HotelService.Domain
 
         [DataMember]
         public int GuestId { get; set; }
+
         [DataMember]
         public virtual Guest Guest { get; set; }
 
         [DataMember]
         public int RoomId { get; set; }
+
         [DataMember]
         public virtual Room Room { get; set; }
 
         [DataMember]
         public DateTime BeginDate { get; set; }
+
         [DataMember]
         public DateTime EndDate { get; set; }
 
         [DataMember]
-        public int Days { get; set; }
+        public decimal Price { get; set; }
 
         [DataMember]
         public RoomReservationStatus ReservationStatus { get; set; }
+
+        public RoomReservation()
+        {
+            CalculatePrice();
+        }
+
+        private void CalculatePrice()
+        {
+            var days = EndDate.Subtract(BeginDate).Days;
+            Price = Room.Cost * days;
+        }
+
     }
 }

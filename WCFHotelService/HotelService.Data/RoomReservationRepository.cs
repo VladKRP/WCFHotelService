@@ -33,7 +33,6 @@ namespace HotelService.Data
         public void Extend(RoomReservation reservation, int days)
         {
             var currentReservation = _context.RoomReservations.Find(reservation);
-            currentReservation.Days += days;
             currentReservation.EndDate = currentReservation.EndDate.Add(new TimeSpan(days, 0, 0, 0, 0));
             _context.SaveChanges();
         }
@@ -67,7 +66,6 @@ namespace HotelService.Data
             {
                 ChangeRoomState(reservation.Room, true);
                 reservation.ReservationStatus = RoomReservationStatus.Reserved;
-                reservation.EndDate = reservation.BeginDate.Add(new TimeSpan(reservation.Days, 0, 0, 0));
                 _context.RoomReservations.Add(reservation);
             }
             _context.SaveChanges();
