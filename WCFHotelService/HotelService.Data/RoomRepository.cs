@@ -10,14 +10,6 @@ namespace HotelService.Data
 {
     public class RoomRepository :Repository<Room>, IRoomRepository
     {
-        //private readonly HotelAppContext _context;
-
-        //public RoomRepository()
-        //{
-        //    _context = new HotelAppContext();
-        //}
-
-        //public RoomRepository(HotelAppContext context) { _context = context; }
-        
+   
     }
 }
