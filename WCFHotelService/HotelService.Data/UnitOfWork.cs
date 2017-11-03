@@ -1,4 +1,5 @@
 ﻿using HotelService.Data.Abstractions;
+using HotelService.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace HotelService.Data
         private IHotelRepository _hotelRepository;
         private IRoomRepository _roomRepository;
         private IRoomReservationRepository _roomReservationRepository;
+        private IRoomTypeRepository _roomTypeRepository;
 
         public IGuestRepository Guests
         {
@@ -51,6 +53,16 @@ namespace HotelService.Data
                 if (_roomReservationRepository == null)
                     _roomReservationRepository = new RoomReservationRepository();
                 return _roomReservationRepository;
+            }
+        }
+
+        public IRoomTypeRepository RoomTypes
+        {
+            get
+            {
+                if (_roomTypeRepository == null)
+                    _roomTypeRepository = new RoomTypeRepository();
+                return _roomTypeRepository;
             }
         }
 

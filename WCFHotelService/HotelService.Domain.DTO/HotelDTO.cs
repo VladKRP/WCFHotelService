@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HotelService.Domain
+namespace HotelService.Domain.DTO
 {
-    public class Discount
+    public class HotelDTO
     {
         public int Id { get; set; }
 
-        public GuestType GuestType { get; set; }
+        public Address Address { get; set; }
 
-        public double Rate { get; set; }
+        public IEnumerable<RoomDTO> Rooms { get; set; }
     }
 }

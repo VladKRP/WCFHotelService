@@ -9,7 +9,7 @@ namespace HotelService.Domain
     
     public class GuestStatistic
     {
-        public int GuestStatisticId { get; set; }
+        public int Id { get; set; }
 
         public int GuestId { get; set; }
         public Guest Guest { get; set; }

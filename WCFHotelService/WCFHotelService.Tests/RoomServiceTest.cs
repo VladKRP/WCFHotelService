@@ -21,11 +21,11 @@ namespace WCFHotelService.Tests
         private IRoomRepository repository;
         private List<Room> rooms = new List<Room>()
         {
-            new Room(){RoomId = 1, Number = "15",  HotelId = 1, IsReserved = true, Cost = 20m},
-            new Room(){RoomId = 2, Number = "5A",  HotelId = 1, IsReserved = false, Cost = 30m},
-            new Room(){RoomId = 3, Number = "14",  HotelId = 2, IsReserved = false, Cost = 20m},
-            new Room(){RoomId = 4, Number = "4",  HotelId = 2, IsReserved = true, Cost = 60m},
-            new Room(){RoomId = 5, Number = "1",  HotelId = 2, IsReserved = false, Cost = 20m}
+            new Room(){Id = 1, Number = "15",  HotelId = 1, IsReserved = true, Cost = 20m},
+            new Room(){Id = 2, Number = "5A",  HotelId = 1, IsReserved = false, Cost = 30m},
+            new Room(){Id = 3, Number = "14",  HotelId = 2, IsReserved = false, Cost = 20m},
+            new Room(){Id = 4, Number = "4",  HotelId = 2, IsReserved = true, Cost = 60m},
+            new Room(){Id = 5, Number = "1",  HotelId = 2, IsReserved = false, Cost = 20m}
         };  
 
         private Mock<Repository> MockSetups<Repository,Entity>(List<Entity> data)
@@ -34,7 +34,7 @@ namespace WCFHotelService.Tests
         {
             Mock<Repository> mock = new Mock<Repository>();
             mock.Setup(x => x.GetAll()).Returns(data);
-            mock.Setup(x => x.Get(It.IsAny<int>())).Returns((int id) => data.Where(x => x.RoomId.Equals(id)).SingleOrDefault());
+            mock.Setup(x => x.Get(It.IsAny<int>())).Returns((int id) => data.Where(x => x.Id.Equals(id)).SingleOrDefault());
             mock.Setup(x => x.Create(It.IsAny<Room>())).Callback((Entity room) => data.Add(room));
             //mock.Setup(x => x.Update());
             mock.Setup(x => x.Delete(It.IsAny<Room>())).Callback((Entity room) => data.Remove(room));
@@ -66,13 +66,13 @@ namespace WCFHotelService.Tests
             Assert.IsNotNull(room);
             Assert.IsNull(notExistingRoom); 
             Assert.AreEqual(rooms.ElementAt(1), room);
-            Assert.AreNotEqual(new Room() { RoomId = 2, Number = "5A", HotelId = 2, IsReserved = false, Cost = 30m }, room);
+            Assert.AreNotEqual(new Room() { Id = 2, Number = "5A", HotelId = 2, IsReserved = false, Cost = 30m }, room);
         }    
 
         [TestMethod]
         public void CreateRoom_CanCreateTest()
         {
-            var room = new Room(){ RoomId = 12, HotelId = 2, Number = "102A", IsReserved = false, Cost = 35m };
+            var room = new Room(){ Id = 12, HotelId = 2, Number = "102A", IsReserved = false, Cost = 35m };
             Assert.IsTrue(repository.GetAll().Count().Equals(5));
             repository.Create(room);
             Assert.IsTrue(repository.GetAll().Count().Equals(6));
@@ -87,14 +87,14 @@ namespace WCFHotelService.Tests
             var roomsCount = rooms.Count();
             var expectedRoomsCount = 5;
             Assert.IsTrue(roomsCount.Equals(expectedRoomsCount), $"Expected number of room {expectedRoomsCount} but actual number is {roomsCount}");
-            Assert.IsNotNull(repository.Get(rooms.ElementAt(4).RoomId));
+            Assert.IsNotNull(repository.Get(rooms.ElementAt(4).Id));
 
             repository.Delete(rooms.ElementAt(4));
             expectedRoomsCount--;
             roomsCount = repository.GetAll().Count();
 
             Assert.IsTrue(roomsCount.Equals(expectedRoomsCount), $"Expected number of room {expectedRoomsCount} but actual number is {roomsCount}");
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => repository.Get(rooms.ElementAt(4).RoomId));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => repository.Get(rooms.ElementAt(4).Id));
         }
 
     }

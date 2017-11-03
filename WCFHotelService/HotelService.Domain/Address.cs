@@ -8,7 +8,7 @@ namespace HotelService.Domain
     {
         [Key]
         [DataMember]
-        public int AddressId { get; set; }
+        public int Id { get; set; }
         [DataMember]
         public string City { get; set; }
         [DataMember]

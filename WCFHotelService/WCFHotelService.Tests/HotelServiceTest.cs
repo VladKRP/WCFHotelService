@@ -25,22 +25,22 @@ namespace WCFHotelService.Tests
         [TestMethod]
         public void GetHotelRooms_Test()
         {
-            var rooms = client.GetHotelRooms("1");
+            //var rooms = client.GetHotelRooms("1");
             throw new NotImplementedException();
         }
 
         [TestMethod]
         public void GetVacantRooms_Test()
         {
-            var rooms = client.GetVacantRooms("1");
+            //var rooms = client.GetVacantRooms("1");
             throw new NotImplementedException();
         }
 
         [TestMethod]
         public void GetReservedRooms_Test()
         {
-           var rooms = client.GetReservedRooms("1");
-           Assert.IsNotNull(rooms);
+           //var rooms = client.GetReservedRooms("1");
+           //Assert.IsNotNull(rooms);
             throw new NotImplementedException();
         }
 

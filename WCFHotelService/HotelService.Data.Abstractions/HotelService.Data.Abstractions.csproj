@@ -45,6 +45,7 @@
     <Compile Include="IRepository.cs" />
     <Compile Include="IRoomRepository.cs" />
     <Compile Include="IRoomReservationRepository.cs" />
+    <Compile Include="IRoomTypeRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

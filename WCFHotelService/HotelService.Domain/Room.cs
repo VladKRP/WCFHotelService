@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace HotelService.Domain
 {
@@ -9,11 +10,11 @@ namespace HotelService.Domain
     {
         [Key]
         [DataMember]
-        public int RoomId { get; set; }
+        public int Id { get; set; }
         [DataMember]
         public string Number { get; set; }
         [DataMember]
-        public RoomType RoomType { get; set; }
+        public virtual RoomType Type { get; set; }
         [DataMember]
         public decimal Cost { get; set; }
         [DataMember]

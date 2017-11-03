@@ -10,43 +10,30 @@ namespace HotelService.Data
 {
     public class HotelRepository :Repository<Hotel>, IHotelRepository
     {
-
-
-        //private HotelAppContext _context;
-
-        //public HotelRepository() { _context = new HotelAppContext(); }
-
-        //public HotelRepository(HotelAppContext context) { _context = context; }
-
         public Hotel GetHotelWithRooms(int id)
         {
-            var hotel = _context.Hotels.FirstOrDefault(x => x.HotelId.Equals(id));
+            var hotel = _context.Hotels.FirstOrDefault(x => x.Id.Equals(id));
             return hotel;
         }
 
-        public IQueryable<Room> GetHotelRooms(int id)
+        public IEnumerable<Room> GetHotelRooms(int id)
         {
-            return GetHotelWithRooms(id).Rooms.AsQueryable();
+            return _context.Hotels.FirstOrDefault(x => x.Id.Equals(id)).Rooms;
         }
 
-        public IQueryable<Room> GetReservedRooms(int id)
+        public IEnumerable<Room> GetReservedRooms(int id)
         {
-            return GetHotelRooms(id).Where(x => x.IsReserved.Equals(true));
+            return _context.Hotels.FirstOrDefault(x => x.Id.Equals(id)).Rooms.Where(x => x.IsReserved.Equals(true));
         }
 
-        public IQueryable<Room> GetRoomsByType(int id, RoomType type)
+        public IEnumerable<Room> GetRoomsByType(int id, RoomType type)
         {
-            return GetHotelRooms(id).Where(x => x.RoomType.Equals(type));
+            return _context.Hotels.FirstOrDefault(x => x.Id.Equals(id)).Rooms.Where(x => x.Type.Id.Equals(type.Id));
         }
 
-        public IQueryable<Room> GetVacantRooms(int id)
+        public IEnumerable<Room> GetVacantRooms(int id)
         {
-            return GetHotelRooms(id).Where(x => x.IsReserved.Equals(false));
-        }
-
-        public IQueryable<Room> GetVacantRoomsOfSpecialType(int id, RoomType type)
-        {
-            return GetVacantRooms(id).Where(x => x.RoomType.Equals(type));
+            return _context.Hotels.FirstOrDefault(x => x.Id.Equals(id)).Rooms.Where(x => x.IsReserved.Equals(false));
         }
     }
 }
