@@ -24,19 +24,19 @@ namespace HotelService.Contracts
 
         [OperationContract]
         [WebGet(UriTemplate = "/hotel/{id}/rooms/vacant")]
-        IQueryable<RoomDTO> GetVacantRooms(string id);
+        IEnumerable<RoomDTO> GetVacantRooms(string id);
 
         [OperationContract]
         [WebGet(UriTemplate = "hotel/{id}/rooms/reserved")]
-        IQueryable<RoomDTO> GetReservedRooms(string id);
+        IEnumerable<RoomDTO> GetReservedRooms(string id);
 
         [OperationContract]
         [WebGet(UriTemplate = "hotel/{id}/rooms?type={type}")]
-        IQueryable<RoomDTO> GetRoomsByType(string id, string type);
+        IEnumerable<RoomDTO> GetRoomsByType(string id, string type);
 
         [OperationContract]
         [WebGet(UriTemplate = "hotel/{id}/rooms/vacant?type={type}")]
-        IQueryable<RoomDTO> GetVacantRoomsOfSpecialType(string id, string type);
+        IEnumerable<RoomDTO> GetVacantRoomsOfSpecialType(string id, string type);
 
     }
 }

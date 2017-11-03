@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Collections;
 using HotelService.Domain;
 using HotelService.Data.Abstractions;
 using HotelService.Data;
@@ -26,7 +25,7 @@ namespace HotelService.Contracts.Implementation
 
         public HotelDTO Get(string id)
         {
-            HotelDTO hotel = null;
+            HotelDTO hotel = null; 
             if(int.TryParse(id, out int value))
             {
                 hotel = _mapper.Map<HotelDTO>(_repository.Hotels.Get(value));
@@ -85,15 +84,15 @@ namespace HotelService.Contracts.Implementation
             return rooms;
         }
 
-        public IQueryable<RoomDTO> GetReservedRooms(string id)
+        public IEnumerable<RoomDTO> GetReservedRooms(string id)
         {
             IEnumerable<RoomDTO> reservedRooms = null;
             if (int.TryParse(id, out int value))
                 reservedRooms = _mapper.Map<IEnumerable<RoomDTO>>(_repository.Hotels.GetReservedRooms(value));
-            return reservedRooms.AsQueryable();
+            return reservedRooms;
         }
 
-        public IQueryable<RoomDTO> GetVacantRooms(string id)
+        public IEnumerable<RoomDTO> GetVacantRooms(string id)
         {
             IEnumerable<RoomDTO> vacantRooms = null;
             if(int.TryParse(id, out int value))
@@ -101,10 +100,10 @@ namespace HotelService.Contracts.Implementation
                 var rooms = _repository.Hotels.GetVacantRooms(value);
                 vacantRooms = _mapper.Map<IEnumerable<RoomDTO>>(rooms);
             }             
-            return vacantRooms.AsQueryable();
+            return vacantRooms;
         }
 
-        public IQueryable<RoomDTO> GetRoomsByType(string id, string type)
+        public IEnumerable<RoomDTO> GetRoomsByType(string id, string type)
         {
             IEnumerable<RoomDTO> roomsDto = null;
             if(int.TryParse(id, out int value))
@@ -117,10 +116,10 @@ namespace HotelService.Contracts.Implementation
                     roomsDto = _mapper.Map<IEnumerable<RoomDTO>>(rooms);
                 } 
             }
-            return roomsDto.AsQueryable();
+            return roomsDto;
         }
 
-        public IQueryable<RoomDTO> GetVacantRoomsOfSpecialType(string id, string type)
+        public IEnumerable<RoomDTO> GetVacantRoomsOfSpecialType(string id, string type)
         {
             return GetRoomsByType(id, type).Where(x => !x.IsReserved);
         }
