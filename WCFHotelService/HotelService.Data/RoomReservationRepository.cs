@@ -10,6 +10,14 @@ namespace HotelService.Data
 {
     public class RoomReservationRepository:Repository<RoomReservation>, IRoomReservationRepository, IDisposable
     {
+        //private readonly HotelAppContext _context;
+
+        //public RoomReservationRepository()
+        //{
+        //    _context = new HotelAppContext();
+        //}
+
+        //public RoomReservationRepository(HotelAppContext context) { _context = context; }
 
         public void ChangeRoomState(Room room, bool isReserved)
         {
@@ -61,6 +69,12 @@ namespace HotelService.Data
                 _context.RoomReservations.Add(reservation);
             }
             _context.SaveChanges();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+            base.Dispose();
         }
     }
 }
