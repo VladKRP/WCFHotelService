@@ -18,6 +18,7 @@ namespace HotelService.Contracts.Implementation.MapperProfile
                 .ForMember(r => r.GuestFullName, opt => opt.MapFrom(x => $"{x.Guest.Name} {x.Guest.Surname}"))
                 .ForMember(r => r.RoomType, opt => opt.MapFrom(x => x.Room.Type.Name));
             CreateMap<Hotel, HotelDTO>();
+            CreateMap<Guest, GuestDTO>().ForMember(g => g.FullName, opt => opt.MapFrom(x => $"{x.Name} {x.Surname}"));
         }
 
     }

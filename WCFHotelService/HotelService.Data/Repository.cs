@@ -18,14 +18,17 @@ namespace HotelService.Data
 
         public virtual Entity Get(int Id)
         {
-            var entity = dbSet.Find(Id);
-            return entity;
+            return dbSet.Find(Id);
         }
 
-        public virtual IQueryable<Entity> GetAll()
+        public virtual IEnumerable<Entity> GetAll()
         {
-            var entities = dbSet.Select(x => x);
-            return entities;
+            return dbSet;
+        }
+
+        public virtual IQueryable<Entity> GetAllQueryable()
+        {
+            return dbSet;
         }
 
         public virtual void Create(Entity entity)

@@ -28,12 +28,12 @@ namespace HotelService.Domain
         [DataMember]
         public int GuestId { get; set; }
         [DataMember]
-        public Guest Guest { get; set; }
+        public virtual Guest Guest { get; set; }
 
         [DataMember]
         public int RoomId { get; set; }
         [DataMember]
-        public Room Room { get; set; }
+        public virtual Room Room { get; set; }
 
         [DataMember]
         public DateTime BeginDate { get; set; }

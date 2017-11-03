@@ -125,6 +125,18 @@ namespace HotelService.Contracts.Implementation
             return GetRoomsByType(id, type).Where(x => !x.IsReserved);
         }
 
+        public IEnumerable<GuestDTO> GetHotelGuests(string id)
+        {
+            IEnumerable<GuestDTO> guests = null;
+            if(int.TryParse(id, out int value))
+            {
+                var hotelReservations = _repository.RoomReservations.GetReservationsByHotel(value);
+                guests = _mapper.Map<IEnumerable<GuestDTO>>(hotelReservations.Select(x => x.Guest));
+            }
+            return guests;
+
+        }
+
         protected  virtual void Dispose()
         {
             _repository.Dispose();

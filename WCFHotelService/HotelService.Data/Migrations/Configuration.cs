@@ -21,10 +21,10 @@ namespace HotelService.Data.Migrations
 
             IEnumerable<RoomType> roomTypes = new List<RoomType>()
             {
-                new RoomType(){ Name = "Single", Cost = 20M},
-                new RoomType(){ Name = "Double", Cost = 40M},
-                new RoomType(){ Name = "Studia", Cost = 70M},
-                new RoomType(){ Name = "King", Cost = 200M},
+                new RoomType(){ Name = "Single"},
+                new RoomType(){ Name = "Double"},
+                new RoomType(){ Name = "Studia"},
+                new RoomType(){ Name = "King"},
             };
             foreach (var Type in roomTypes)
                 context.RoomTypes.Add(Type);
@@ -44,7 +44,7 @@ namespace HotelService.Data.Migrations
                 context.Rooms.Add(room);
             context.SaveChanges();
 
-            Hotel hotel = new Hotel() { Address = address, Rooms = rooms };
+            Hotel hotel = new Hotel() { Address = address, Rooms = rooms, Name = "Dolphin" };
 
             context.Hotels.Add(hotel);
             context.SaveChanges();
@@ -60,15 +60,15 @@ namespace HotelService.Data.Migrations
                 context.Guests.Add(guest);
             context.SaveChanges();
 
-            //IEnumerable<RoomReservation> reservations = new List<RoomReservation>()
-            //{
-            //    new RoomReservation(){ Guest = guests.ElementAt(2), Room = rooms.ElementAt(3), Days = 3, ReservationStatus = RoomReservationStatus.Reserved },
-            //    new RoomReservation(){ Guest = guests.ElementAt(1), Room = rooms.ElementAt(1), Days = 2, ReservationStatus = RoomReservationStatus.Reserved }
-            //};
+            IEnumerable<RoomReservation> reservations = new List<RoomReservation>()
+            {
+                new RoomReservation(){ Guest = guests.ElementAt(2), Room = rooms.ElementAt(3), Days = 3, ReservationStatus = RoomReservationStatus.Reserved , BeginDate = DateTime.Now, EndDate = DateTime.Now.AddDays(3) },
+                new RoomReservation(){ Guest = guests.ElementAt(1), Room = rooms.ElementAt(1), Days = 2, ReservationStatus = RoomReservationStatus.Reserved , BeginDate = DateTime.Now, EndDate = DateTime.Now.AddDays(2) }
+            };
 
-            //foreach (var reservation in reservations)
-            //    context.RoomReservations.Add(reservation);
-            //context.SaveChanges();
+            foreach (var reservation in reservations)
+                context.RoomReservations.Add(reservation);
+            context.SaveChanges();
         }
     }
 }

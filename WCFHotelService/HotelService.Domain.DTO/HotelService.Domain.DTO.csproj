@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GuestDTO.cs" />
     <Compile Include="HotelDTO.cs" />
     <Compile Include="RoomDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

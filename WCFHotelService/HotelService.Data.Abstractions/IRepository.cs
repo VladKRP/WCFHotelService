@@ -7,7 +7,8 @@ namespace HotelService.Data.Abstractions
     public interface IRepository<Entity, key> : IDisposable
     {
         Entity Get(key id);
-        IQueryable<Entity> GetAll();
+        IEnumerable<Entity> GetAll();
+        IQueryable<Entity> GetAllQueryable();
         void Create(Entity entity);
         void Update(Entity entity);
         void Delete(Entity entity);

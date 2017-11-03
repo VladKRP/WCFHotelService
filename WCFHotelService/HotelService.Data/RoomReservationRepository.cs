@@ -38,6 +38,16 @@ namespace HotelService.Data
             _context.SaveChanges();
         }
 
+        public IEnumerable<RoomReservation> GetReservationsByHotel(int id)
+        {
+            var hotelRooms = _context.Hotels.FirstOrDefault(x => x.Id.Equals(id)).Rooms;
+            var hotelReservations = from hotelRoom in hotelRooms
+                                    from reservation in _context.RoomReservations
+                                    where reservation.RoomId == hotelRoom.Id
+                                    select reservation;
+            return hotelReservations;
+        }
+
         public void Reject(RoomReservation reservation)
         {
             var currentReservation = _context.RoomReservations.Find(reservation);

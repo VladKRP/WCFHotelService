@@ -17,8 +17,5 @@ namespace HotelService.Domain
 
         [DataMember]
         public string Name { get; set; }
-
-        [DataMember]
-        public decimal Cost { get; set; }
     }
 }

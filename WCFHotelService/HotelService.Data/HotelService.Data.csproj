@@ -54,9 +54,13 @@
     <Compile Include="GuestRepository.cs" />
     <Compile Include="HotelAppContext.cs" />
     <Compile Include="HotelRepository.cs" />
-    <Compile Include="Migrations\201711021325365_Initial.cs" />
-    <Compile Include="Migrations\201711021325365_Initial.Designer.cs">
-      <DependentUpon>201711021325365_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201711030939047_Initial.cs" />
+    <Compile Include="Migrations\201711030939047_Initial.Designer.cs">
+      <DependentUpon>201711030939047_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711031017538_Delete cost from RoomType.cs" />
+    <Compile Include="Migrations\201711031017538_Delete cost from RoomType.Designer.cs">
+      <DependentUpon>201711031017538_Delete cost from RoomType.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -84,8 +88,11 @@
     <Folder Include="bin\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201711021325365_Initial.resx">
-      <DependentUpon>201711021325365_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201711030939047_Initial.resx">
+      <DependentUpon>201711030939047_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711031017538_Delete cost from RoomType.resx">
+      <DependentUpon>201711031017538_Delete cost from RoomType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -13,7 +13,7 @@ namespace HotelService.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201711021325365_Initial"; }
+            get { return "201711030939047_Initial"; }
         }
         
         string IMigrationMetadata.Source
