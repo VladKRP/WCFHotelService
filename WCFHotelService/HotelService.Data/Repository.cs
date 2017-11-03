@@ -22,7 +22,7 @@ namespace HotelService.Data
             return entity;
         }
 
-        public virtual IEnumerable<Entity> GetAll()
+        public virtual IQueryable<Entity> GetAll()
         {
             var entities = dbSet.Select(x => x);
             return entities;

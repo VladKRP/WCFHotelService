@@ -33,7 +33,7 @@ namespace WCFHotelService.Tests
             where Entity : Room 
         {
             Mock<Repository> mock = new Mock<Repository>();
-            mock.Setup(x => x.GetAll()).Returns(data);
+            mock.Setup(x => x.GetAll()).Returns(data.AsQueryable());
             mock.Setup(x => x.Get(It.IsAny<int>())).Returns((int id) => data.Where(x => x.Id.Equals(id)).SingleOrDefault());
             mock.Setup(x => x.Create(It.IsAny<Room>())).Callback((Entity room) => data.Add(room));
             //mock.Setup(x => x.Update());

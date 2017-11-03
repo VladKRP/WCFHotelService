@@ -40,6 +40,13 @@ namespace HotelService.Contracts.Implementation
             return _mapper.Map<IEnumerable<HotelDTO>>(hotels);
         }
 
+        public IEnumerable<HotelDTO> GetHotelsByCity(string city)
+        {
+            var hotels = _repository.Hotels.GetAll().Where(x => x.Address.City.Equals(city));
+            return _mapper.Map<IEnumerable<HotelDTO>>(hotels);
+        }
+
+
         public void Create(HotelDTO hotelDto)
         {
             var hotel = _mapper.Map<Hotel>(hotelDto);
@@ -122,5 +129,7 @@ namespace HotelService.Contracts.Implementation
         {
             _repository.Dispose();
         }
+
+        
     }
 }
