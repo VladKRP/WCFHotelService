@@ -63,7 +63,11 @@ namespace HotelService.Contracts.Implementation
         {
             var guest = Get(id);
             if(guest != null)
-                _repository.Guests.ChangeGuestStatusType(guest, status);
+            {
+                if(status == GuestType.Simple || status == GuestType.Vip)
+                    _repository.Guests.ChangeGuestStatusType(guest, status);
+            }
+                
         }
 
         protected virtual void Dispose()

@@ -62,8 +62,8 @@ namespace HotelService.Data.Migrations
 
             IEnumerable<RoomReservation> reservations = new List<RoomReservation>()
             {
-                new RoomReservation(){ Guest = guests.ElementAt(2), Room = rooms.ElementAt(3), ReservationStatus = RoomReservationStatus.Reserved , BeginDate = DateTime.Now, EndDate = DateTime.Now.AddDays(3) },
-                new RoomReservation(){ Guest = guests.ElementAt(1), Room = rooms.ElementAt(1), ReservationStatus = RoomReservationStatus.Reserved , BeginDate = DateTime.Now, EndDate = DateTime.Now.AddDays(2) }
+                new RoomReservation(){ Guest = guests.ElementAt(2), Room = rooms.ElementAt(3), Price = 12m, ReservationStatus = RoomReservationStatus.Reserved , BeginDate = DateTime.Now, EndDate = DateTime.Now.AddDays(3) },
+                new RoomReservation(){ Guest = guests.ElementAt(1), Room = rooms.ElementAt(1), Price = 30m, ReservationStatus = RoomReservationStatus.Reserved , BeginDate = DateTime.Now, EndDate = DateTime.Now.AddDays(2) }
             };
 
             foreach (var reservation in reservations)
